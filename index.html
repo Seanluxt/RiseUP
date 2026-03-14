@@ -7,11 +7,12 @@
     <title>RiseUP | A Bread-baking journey at Urban Peak </title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #1d1d1f; /* Apple's signature dark grey */
-            --accent-color: #0071e3; /* Classic blue for links */
-            --secondary-text: #86868b;
+             :root {
+            --bg-color: #fdf8f2;
+            --text-color: #2c2c2c;
+            --accent-color: #c17f3a;
+            --secondary-text: #7a6f64;
+            --warm-border: #e8ddd0;
         }
 
         body {
@@ -20,7 +21,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.5;
+            line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -34,7 +35,6 @@
         .logo {
             width: 120px;
             margin-bottom: 40px;
-            /* Placeholder for your RiseUP Logo */
             filter: grayscale(100%);
         }
 
@@ -43,6 +43,7 @@
             font-weight: 600;
             letter-spacing: -0.02em;
             margin-bottom: 10px;
+            color: #2c2c2c;
         }
 
         .subtitle {
@@ -58,11 +59,12 @@
         }
 
         .section h2 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
-            border-bottom: 1px solid #d2d2d7;
+            border-bottom: 1px solid var(--warm-border);
             padding-bottom: 10px;
             margin-bottom: 20px;
+            color: #2c2c2c;
         }
 
         .details-grid {
@@ -79,7 +81,7 @@
         .detail-label {
             font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             color: var(--secondary-text);
             margin-bottom: 5px;
         }
@@ -91,18 +93,19 @@
 
         .cta-button {
             display: inline-block;
-            background-color: var(--text-color);
+            background-color: #c17f3a;
             color: white;
-            padding: 12px 30px;
+            padding: 14px 34px;
             border-radius: 980px;
             text-decoration: none;
-            font-weight: 400;
+            font-weight: 500;
             margin-top: 40px;
             transition: all 0.3s ease;
+            letter-spacing: 0.01em;
         }
 
         .cta-button:hover {
-            opacity: 0.8;
+            background-color: #a66a2a;
             transform: scale(1.02);
         }
 
@@ -112,11 +115,15 @@
             color: var(--secondary-text);
         }
 
+        .footer a {
+            color: var(--secondary-text);
+        }
+
         @media (max-width: 480px) {
             h1 { font-size: 32px; }
             .details-grid { grid-template-columns: 1fr; }
         }
-    </style>
+
 </head>
 <body>
 
