@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RiseUP | A Bread-baking journey at Urban Peak </title>
 <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="description" content="A morning of bread baking at Urban Peak's Mothership in Denver. Your $100 donation goes directly to Urban Peak youth.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="RiseUP | A Bread-baking journey at Urban Peak">
+    <meta property="og:description" content="A morning of bread baking at Urban Peak's Mothership in Denver. Your $100 donation goes directly to Urban Peak youth.">
+    <meta property="og:url" content="https://seanluxt.github.io/RiseUP/">
+    <meta property="og:image" content="https://seanluxt.github.io/RiseUP/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="RiseUP logo">
+    <meta name="twitter:card" content="summary_large_image">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -189,9 +199,74 @@
             font-style: normal;
             color: var(--secondary-text);
         }
+        .signup-steps {
+            text-align: left;
+            max-width: 420px;
+            margin: 16px auto 0;
+            padding-left: 24px;
+        }
+
+        .signup-steps li {
+            margin-bottom: 8px;
+            padding-left: 4px;
+        }
+
+        .info-button {
+            background: none;
+            border: none;
+            padding: 0 4px;
+            cursor: pointer;
+            color: var(--accent-color);
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .read-more {
+            background: none;
+            border: none;
+            padding: 0;
+            margin-top: 12px;
+            cursor: pointer;
+            color: var(--accent-color);
+            font: inherit;
+            font-style: normal;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+
+        .faq-button {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 22px;
+            font-size: 15px;
+            font-family: inherit;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 999;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .faq-button.is-hidden {
+            opacity: 0;
+            transform: translateY(12px);
+            pointer-events: none;
+        }
+
+        button:focus-visible, a:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 3px;
+        }
+
         @media (max-width: 480px) {
             h1 { font-size: 32px; }
             .details-grid { grid-template-columns: 1fr; }
+            .container { padding-bottom: 80px; }
+            .faq-button { bottom: 16px; right: 16px; }
         }
 </style>
 </head>
@@ -227,8 +302,8 @@
              <div class="detail-item">
     <div class="detail-label">Tax Credit</div>
     <div class="detail-value">$25 HCTC Credit
-        <span onclick="document.getElementById('hctc-tip').style.display=document.getElementById('hctc-tip').style.display==='block'?'none':'block'" style="cursor:pointer;color:#c17f3a;font-size:14px;margin-left:4px;">ⓘ</span>
-        <div id="hctc-tip" style="display:none;margin-top:8px;font-size:13px;color:#7a6f64;background:#f0e8dc;border-radius:8px;padding:10px 12px;line-height:1.5;">Colorado's Homeless Contribution Tax Credit (HCTC) allows donors to receive a <strong>25% state tax credit</strong> on donations of $100 or more to qualifying organizations like Urban Peak. On a $100 donation, that's a <strong>$25 credit</strong> directly off your Colorado state taxes. Select "Yes" under Gift Preferences when donating to claim it.</div>
+        <button type="button" class="info-button" id="hctc-toggle" aria-expanded="false" aria-controls="hctc-tip" aria-label="What is the HCTC tax credit?">ⓘ</button>
+        <div id="hctc-tip" hidden style="margin-top:8px;font-size:13px;color:#7a6f64;background:#f0e8dc;border-radius:8px;padding:10px 12px;line-height:1.5;">Colorado's Homeless Contribution Tax Credit (HCTC) allows donors to receive a <strong>25% state tax credit</strong> on donations of $100 or more to qualifying organizations like Urban Peak. On a $100 donation, that's a <strong>$25 credit</strong> directly off your Colorado state taxes. Select "Yes" under Gift Preferences when donating to claim it.</div>
     </div>
 </div>
 
@@ -240,11 +315,19 @@
             <p>While our dough undergoes its first rise, we will take a private tour of the brand-new Mothership campus to see the trauma-informed care and housing programs in action.</p>
         </div>
 
-<p style="margin-top: 40px; color: var(--text-color);">Join us for a morning of bread baking and a closer look at Urban Peak.<br><br> 1. Click the link below. 2. Select $100 donation. 3. Select "Yes" under Gift Preferences to secure the HCTC tax credit. 4. Add RiseUP to the Leave a Comment section under Tribute Gift. 5. Complete donation. </p>
+<p style="margin-top: 40px; margin-bottom: 0; color: var(--text-color);">Join us for a morning of bread baking and a closer look at Urban Peak.</p>
+
+<ol class="signup-steps">
+    <li>Click the button below.</li>
+    <li>Select the <strong>$100</strong> donation.</li>
+    <li>Select <strong>"Yes"</strong> under Gift Preferences to secure the HCTC tax credit.</li>
+    <li>Add <strong>RiseUP</strong> to the Leave a Comment section under Tribute Gift.</li>
+    <li>Complete your donation.</li>
+</ol>
 
 <p style="margin-top: 40px; font-size: 17px; font-weight: 600; color: var(--accent-color);">Your full $100 goes directly to Urban Peak youth.</p>
 
-<a href="https://www.urbanpeak.org/support" class="cta-button">I'd like to attend </a>
+<a href="https://www.urbanpeak.org/support" class="cta-button" target="_blank" rel="noopener noreferrer">I'd like to attend</a>
 <div class="section" style="margin-top: 50px;">
             <h2>Past Bakes</h2>
             <p style="margin:0 0 24px;">A look back at the bakers, loaves, and stories from RiseUP so far.</p>
@@ -252,9 +335,9 @@
             <div class="past-bake-entry">
                 <div class="past-bake-label">RiseUP Bake #1</div>
                 <div class="photo-grid">
-                 <img src="RiseUP_1_Eric_holding_loaf.jpeg" alt="RiseUP Bake 1 - Eric holding loaf">
-                   <img src="RiseUP_Bake_1_group.jpeg" alt="RiseUP Bake 1 - group">
-                   <img src="RiseUP_Bake_1_loaves_and_group.jpeg" alt="RiseUP Bake 1 - loaves and group">
+                 <img src="RiseUP_1_Eric_holding_loaf.jpeg" loading="lazy" alt="RiseUP Bake 1 - Eric holding loaf">
+                   <img src="RiseUP_Bake_1_group.jpeg" loading="lazy" alt="RiseUP Bake 1 - group">
+                   <img src="RiseUP_Bake_1_loaves_and_group.jpeg" loading="lazy" alt="RiseUP Bake 1 - loaves and group">
                 </div>
                 <div class="quote-card">
                     "I would recommend RiseUP to new and seasoned bakers alike. It’s a uniquely rewarding experience to make something with your own two hands while also learning about and being in a place that helps uplift young people."
@@ -265,12 +348,13 @@
             <div class="past-bake-entry">
                 <div class="past-bake-label">RiseUP Bake #2</div>
                 <div class="photo-grid">
-                 <img src="Eli_Rachael_RiseUP_2.jpeg" alt="RiseUP Bake 2 - Eli and Rachael">
-              <img src="RiseUP_2_Group.jpeg" alt="RiseUP Bake 2 - group">
-            <img src="Tom-Colleen-RiseUP-2.jpeg" alt="RiseUP Bake 2 - Tom and Colleen">
+                 <img src="Eli_Rachael_RiseUP_2.jpeg" loading="lazy" alt="RiseUP Bake 2 - Eli and Rachael">
+              <img src="RiseUP_2_Group.jpeg" loading="lazy" alt="RiseUP Bake 2 - group">
+            <img src="Tom-Colleen-RiseUP-2.jpeg" loading="lazy" alt="RiseUP Bake 2 - Tom and Colleen">
                 </div>
  <div class="quote-card">
-                    "I loafed every minute of the RiseUP event this weekend! From start to finish, it was the perfect recipe for a meaningful and memorable experience.
+                    "I loafed every minute of the RiseUP event this weekend! From start to finish, it was the perfect recipe for a meaningful and memorable experience.<span id="eli-ellipsis">…"</span>
+                    <span id="eli-more" hidden>
                     <br><br>
                     We got hands-on baking bread (and yes, I kneaded that in my life), learning techniques that made me feel like I could really rise to the occasion in my own kitchen. Our baker, Sean, was absolutely the upper crust: patient, encouraging, and full of wisdom. He truly helped us see that even when life gets tough, we can still rise up (just like a good dough!) and accomplish something amazing.
                     <br><br>
@@ -279,6 +363,8 @@
                     All in all, this event was the perfect blend of learning, purpose, and inspiration. I came for the bread but stayed for the heart. I'd recommend it to anyone who wants to bake a difference, support a great cause, and have a yeast-ful experience doing it.
                     <br><br>
                     I'll definitely be coming back for another batch!"
+                    </span>
+                    <br><button type="button" class="read-more" id="eli-toggle" aria-expanded="false" aria-controls="eli-more">Read more</button>
                     <span class="quote-attribution">— Eli</span>
                 </div>
             </div>
@@ -301,7 +387,7 @@
 </div>
 
 <div class="section" style="margin-top: 50px;">
-    <h2>About the baker</h2>
+    <h2>About the Baker</h2>
 
             <div style="display: flex; align-items: center; gap: 20px;">
                 <img src="IMG_2962.jpeg" alt="Sean" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); flex-shrink: 0;">
@@ -319,14 +405,14 @@
          <img src="IMG_2951.png" alt="" class="logo-bottom">
     </div>
 <!-- FAQ Button -->
-<button onclick="document.getElementById('faq-overlay').style.display='flex'" style="position:fixed;bottom:24px;right:24px;background:#c17f3a;color:white;border:none;border-radius:50px;padding:12px 22px;font-size:15px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.2);z-index:999;">FAQ</button>
+<button type="button" class="faq-button" id="faq-open" aria-haspopup="dialog" aria-controls="faq-overlay">FAQ</button>
 
 <!-- FAQ Overlay -->
-<div id="faq-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;justify-content:center;align-items:center;padding:20px;">
-  <div style="background:#fdf8f2;border-radius:12px;max-width:560px;width:100%;max-height:85vh;overflow-y:auto;padding:32px;">
+<div id="faq-overlay" role="dialog" aria-modal="true" aria-labelledby="faq-title" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;justify-content:center;align-items:center;padding:20px;">
+  <div id="faq-panel" tabindex="-1" style="background:#fdf8f2;border-radius:12px;max-width:560px;width:100%;max-height:85vh;overflow-y:auto;padding:32px;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
-      <h2 style="margin:0;color:#2c2c2c;">What to Expect</h2>
-      <button onclick="document.getElementById('faq-overlay').style.display='none'" style="background:none;border:none;font-size:24px;cursor:pointer;color:#7a6f64;">✕</button>
+      <h2 id="faq-title" style="margin:0;color:#2c2c2c;">What to Expect</h2>
+      <button type="button" id="faq-close" aria-label="Close FAQ" style="background:none;border:none;font-size:24px;cursor:pointer;color:#7a6f64;">✕</button>
     </div>
     <div style="display:flex;flex-direction:column;gap:18px;color:#2c2c2c;font-size:15px;line-height:1.6;">
       <p><strong>When should I arrive?</strong><br>Please plan to arrive at 9:45 AM at the front desk. There is street parking directly in front of the Mothership.</p>
@@ -342,6 +428,61 @@
   </div>
 </div>
 
+
+<script>
+    // Tax credit info toggle
+    var hctcToggle = document.getElementById('hctc-toggle');
+    var hctcTip = document.getElementById('hctc-tip');
+    hctcToggle.addEventListener('click', function () {
+        var open = hctcTip.hidden;
+        hctcTip.hidden = !open;
+        hctcToggle.setAttribute('aria-expanded', open);
+    });
+
+    // Eli's testimonial "Read more"
+    var eliToggle = document.getElementById('eli-toggle');
+    var eliMore = document.getElementById('eli-more');
+    var eliEllipsis = document.getElementById('eli-ellipsis');
+    eliToggle.addEventListener('click', function () {
+        var open = eliMore.hidden;
+        eliMore.hidden = !open;
+        eliEllipsis.hidden = open;
+        eliToggle.textContent = open ? 'Read less' : 'Read more';
+        eliToggle.setAttribute('aria-expanded', open);
+    });
+
+    // FAQ dialog: opens from the button, closes with ✕, Escape, or a tap outside
+    var faqButton = document.getElementById('faq-open');
+    var faqOverlay = document.getElementById('faq-overlay');
+    var faqPanel = document.getElementById('faq-panel');
+    function openFaq() {
+        faqOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        faqPanel.focus();
+    }
+    function closeFaq() {
+        faqOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+        faqButton.focus();
+    }
+    faqButton.addEventListener('click', openFaq);
+    document.getElementById('faq-close').addEventListener('click', closeFaq);
+    faqOverlay.addEventListener('click', function (e) {
+        if (e.target === faqOverlay) closeFaq();
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && faqOverlay.style.display === 'flex') closeFaq();
+    });
+
+    // Tuck the FAQ button away while scrolling down so it doesn't cover the text;
+    // bring it back when scrolling up or at the top of the page
+    var lastScrollY = window.scrollY;
+    window.addEventListener('scroll', function () {
+        var y = window.scrollY;
+        faqButton.classList.toggle('is-hidden', y > lastScrollY && y > 100);
+        lastScrollY = y;
+    }, { passive: true });
+</script>
 
 </body>
 </html>
