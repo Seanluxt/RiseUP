@@ -211,6 +211,50 @@
             padding-left: 4px;
         }
 
+        .bif-card {
+            margin-top: 50px;
+            background: #f0e8dc;
+            border-radius: 12px;
+            padding: 24px 22px 28px;
+        }
+
+        .bif-card h2 {
+            border-bottom-color: #ddcfbd;
+        }
+
+        .bif-card .signup-steps {
+            margin-left: 0;
+        }
+
+        .bif-note {
+            font-size: 14px;
+            color: var(--secondary-text);
+            margin: 12px 0 0;
+        }
+
+        .bif-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .bif-buttons .cta-button {
+            margin-top: 0;
+        }
+
+        .cta-secondary {
+            background-color: transparent;
+            color: var(--accent-color);
+            box-shadow: inset 0 0 0 2px var(--accent-color);
+        }
+
+        .cta-secondary:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
         .info-button {
             background: none;
             border: none;
@@ -328,6 +372,23 @@
 <p style="margin-top: 40px; font-size: 17px; font-weight: 600; color: var(--accent-color);">Your full $100 goes directly to Urban Peak youth.</p>
 
 <a href="https://www.urbanpeak.org/support" class="cta-button" target="_blank" rel="noopener noreferrer">I'd like to attend</a>
+
+<div class="section bif-card" id="bake-it-forward">
+    <h2>Can't make it to Denver? Bake it Forward.</h2>
+    <p>Buy a seat for someone else. Your $100 goes to Urban Peak youth, and Sean gives your seat to someone in Denver at an upcoming RiseUP bake. Afterward, you'll get a photo of the loaf baked in your honor.</p>
+    <ol class="signup-steps">
+        <li>Click the Bake it Forward button below.</li>
+        <li>Select the <strong>$100</strong> donation.</li>
+        <li>Add <strong>RiseUP Bake it Forward</strong> to the Leave a Comment section under Tribute Gift.</li>
+        <li>Complete your donation.</li>
+        <li>Email Sean so he can connect you with your bake.</li>
+    </ol>
+    <p class="bif-note">Colorado taxpayers: select "Yes" under Gift Preferences for the HCTC credit.</p>
+    <div class="bif-buttons">
+        <a href="https://www.urbanpeak.org/support" class="cta-button" target="_blank" rel="noopener noreferrer">Bake it Forward</a>
+        <a href="mailto:seanluxton@gmail.com?subject=I%20baked%20a%20RiseUP%20seat%20forward!&amp;body=Hi%20Sean%2C%0A%0AI%20just%20made%20a%20Bake%20it%20Forward%20donation.%0A%0AMy%20name%3A%0AWhere%20I%20live%3A%0A" class="cta-button cta-secondary">Email Sean</a>
+    </div>
+</div>
 <div class="section" style="margin-top: 50px;">
             <h2>Past Bakes</h2>
             <p style="margin:0 0 24px;">A look back at the bakers, loaves, and stories from RiseUP so far.</p>
