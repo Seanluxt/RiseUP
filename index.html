@@ -23,8 +23,14 @@
             --bg-color: #fdf8f2;
             --text-color: #2c2c2c;
             --accent-color: #c17f3a;
+            --accent-text: #8f5419;
+            --accent-heading: #a66a2a;
             --secondary-text: #7a6f64;
             --warm-border: #e8ddd0;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -227,7 +233,7 @@
         }
 
         .bif-title {
-            color: var(--accent-color);
+            color: var(--accent-heading);
             font-family: 'Caveat', cursive;
             font-size: 1.45em;
             font-weight: 700;
@@ -235,7 +241,7 @@
         }
 
         .bif-name {
-            color: var(--accent-color);
+            color: var(--accent-text);
             font-weight: 600;
         }
 
@@ -266,7 +272,7 @@
 
         .cta-secondary {
             background-color: transparent;
-            color: var(--accent-color);
+            color: var(--accent-text);
             box-shadow: inset 0 0 0 2px var(--accent-color);
         }
 
@@ -280,7 +286,7 @@
             border: none;
             padding: 0 4px;
             cursor: pointer;
-            color: var(--accent-color);
+            color: var(--accent-text);
             font-size: 14px;
             font-family: inherit;
         }
@@ -291,7 +297,7 @@
             padding: 0;
             margin-top: 12px;
             cursor: pointer;
-            color: var(--accent-color);
+            color: var(--accent-text);
             font: inherit;
             font-style: normal;
             font-size: 14px;
@@ -340,7 +346,7 @@
            <img src="IMG_2951.png" alt="RiseUP Logo" class="logo-top">
         
         <h1>Rising soon, Bake #3</h1>
-        <p class="subtitle">A baking experience for good.</p>
+        <p class="subtitle">A morning of bread baking that supports Denver youth through Urban Peak.</p>
 
         <div class="section">
             <h2>The Mission</h2>
@@ -353,23 +359,27 @@
             <div class="details-grid">
                 <div class="detail-item">
                     <div class="detail-label">When</div>
-                    <div class="detail-value">Date tbd<br>9:45 AM — 1:00 PM</div>
+                    <div class="detail-value">Date coming soon<br>9:45 AM — 1:00 PM</div>
                 </div>
                 <div class="detail-item">
                     <div class="detail-label">Where</div>
                     <div class="detail-value">The Mothership<br>1630 S. Acoma St.</div>
                 </div>
                 <div class="detail-item">
-                    <div class="detail-label">Impact</div>
-                    <div class="detail-value">$100 Donation</div>
+                    <div class="detail-label">Your Gift</div>
+                    <div class="detail-value">$100 donation</div>
                 </div>
              <div class="detail-item">
     <div class="detail-label">Tax Credit</div>
-    <div class="detail-value">$25 HCTC Credit
+    <div class="detail-value">$25 Colorado tax credit
         <button type="button" class="info-button" id="hctc-toggle" aria-expanded="false" aria-controls="hctc-tip" aria-label="What is the HCTC tax credit?">ⓘ</button>
         <div id="hctc-tip" hidden style="margin-top:8px;font-size:13px;color:#7a6f64;background:#f0e8dc;border-radius:8px;padding:10px 12px;line-height:1.5;">Colorado's Homeless Contribution Tax Credit (HCTC) allows donors to receive a <strong>25% state tax credit</strong> on donations of $100 or more to qualifying organizations like Urban Peak. On a $100 donation, that's a <strong>$25 credit</strong> directly off your Colorado state taxes. Select "Yes" under Gift Preferences when donating to claim it.</div>
     </div>
 </div>
+                <div class="detail-item">
+                    <div class="detail-label">Seats</div>
+                    <div class="detail-value">Only 6 per bake</div>
+                </div>
 
             </div>
         </div>
@@ -379,7 +389,7 @@
             <p>While our dough undergoes its first rise, we will take a private tour of the brand-new Mothership campus to see the trauma-informed care and housing programs in action.</p>
         </div>
 
-<p style="margin-top: 40px; margin-bottom: 0; color: var(--text-color);">Join us for a morning of bread baking and a closer look at Urban Peak.</p>
+<p id="sign-up" style="margin-top: 40px; margin-bottom: 0; color: var(--text-color);">Join us for a morning of bread baking and a closer look at Urban Peak.</p>
 
 <ol class="signup-steps">
     <li>Click the button below.</li>
@@ -389,7 +399,7 @@
     <li>Complete your donation.</li>
 </ol>
 
-<p style="margin-top: 40px; font-size: 17px; font-weight: 600; color: var(--accent-color);">Your full $100 goes directly to Urban Peak youth.</p>
+<p style="margin-top: 40px; font-size: 17px; font-weight: 600; color: var(--accent-text);">Your full $100 goes directly to Urban Peak youth.</p>
 
 <a href="https://www.urbanpeak.org/support" class="cta-button" target="_blank" rel="noopener noreferrer">I'd like to attend</a>
 
@@ -434,8 +444,8 @@
             <img src="Tom-Colleen-RiseUP-2.jpeg" loading="lazy" alt="RiseUP Bake 2 - Tom and Colleen">
                 </div>
  <div class="quote-card">
-                    "I loafed every minute of the RiseUP event this weekend! From start to finish, it was the perfect recipe for a meaningful and memorable experience.<span id="eli-ellipsis">…"</span>
-                    <span id="eli-more" hidden>
+                    "I loafed every minute of the RiseUP event this weekend! From start to finish, it was the perfect recipe for a meaningful and memorable experience<span id="eli-ellipsis">…"</span><span id="eli-more" hidden>.
+                    
                     <br><br>
                     We got hands-on baking bread (and yes, I kneaded that in my life), learning techniques that made me feel like I could really rise to the occasion in my own kitchen. Our baker, Sean, was absolutely the upper crust: patient, encouraging, and full of wisdom. He truly helped us see that even when life gets tough, we can still rise up (just like a good dough!) and accomplish something amazing.
                     <br><br>
@@ -456,12 +466,12 @@
     <div style="display:flex;flex-direction:column;gap:16px;">
         <div>
             <p style="margin:0 0 8px;"><strong>How to Knead</strong></p>
-            <a href="https://www.youtube.com/watch?v=BJiucv88flM" target="_blank" rel="noopener noreferrer" style="color:#c17f3a;font-size:14px;text-decoration:underline;">Watch on YouTube ↗</a>
+            <a href="https://www.youtube.com/watch?v=BJiucv88flM" target="_blank" rel="noopener noreferrer" style="color:var(--accent-text);font-size:14px;text-decoration:underline;">Watch on YouTube ↗</a>
 
         </div>
         <div>
             <p style="margin:0 0 8px;"><strong>How to Shape a Loaf</strong></p>
- <a href="https://www.youtube.com/watch?v=wx5I5O_RoeI" target="_blank" rel="noopener noreferrer" style="color:#c17f3a;font-size:14px;text-decoration:underline;">Watch on YouTube ↗</a>
+ <a href="https://www.youtube.com/watch?v=wx5I5O_RoeI" target="_blank" rel="noopener noreferrer" style="color:var(--accent-text);font-size:14px;text-decoration:underline;">Watch on YouTube ↗</a>
 
         </div>
     </div>
@@ -476,7 +486,10 @@
             </div>
         </div>
 
-<a href="mailto:seanluxton@gmail.com?subject=I'm interested in RiseUP!" class="cta-button" style="margin-top: 10px;">Email me with any questions</a>
+<p style="margin: 10px 0 0; font-size: 19px; font-weight: 600;">Ready to bake?</p>
+<a href="#sign-up" class="cta-button" style="margin-top: 16px;">I'd like to attend</a>
+<br>
+<a href="mailto:seanluxton@gmail.com?subject=I'm interested in RiseUP!" class="cta-button cta-secondary" style="margin-top: 16px;">Email me with any questions</a>
 
 
         <div class="footer">
