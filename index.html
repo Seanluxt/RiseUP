@@ -321,13 +321,16 @@
             cursor: pointer;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             z-index: 999;
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            transition: opacity 0.3s ease;
         }
 
-        .faq-button.is-hidden {
-            opacity: 0;
-            transform: translateY(12px);
-            pointer-events: none;
+        .faq-button.is-faded {
+            opacity: 0.5;
+        }
+
+        .faq-button.is-faded:hover,
+        .faq-button.is-faded:focus-visible {
+            opacity: 1;
         }
 
         button:focus-visible, a:focus-visible {
@@ -571,12 +574,12 @@
         if (e.key === 'Escape' && faqOverlay.style.display === 'flex') closeFaq();
     });
 
-    // Tuck the FAQ button away while scrolling down so it doesn't cover the text;
-    // bring it back when scrolling up or at the top of the page
+    // Fade the FAQ button while scrolling down so it doesn't distract from the text;
+    // it stays clickable, and returns to full strength when scrolling up or at the top
     var lastScrollY = window.scrollY;
     window.addEventListener('scroll', function () {
         var y = window.scrollY;
-        faqButton.classList.toggle('is-hidden', y > lastScrollY && y > 100);
+        faqButton.classList.toggle('is-faded', y > lastScrollY && y > 100);
         lastScrollY = y;
     }, { passive: true });
 </script>
