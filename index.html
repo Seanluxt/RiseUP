@@ -205,7 +205,7 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 20px 56px;
             cursor: zoom-out;
         }
 
@@ -214,6 +214,40 @@
             max-height: 90vh;
             border-radius: 8px;
             display: block;
+        }
+
+        .photo-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            font-size: 28px;
+            line-height: 1;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #photo-prev { left: 8px; }
+        #photo-next { right: 8px; }
+
+        #photo-count {
+            position: absolute;
+            bottom: 16px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            pointer-events: none;
+        }
+
+        @media (max-width: 480px) {
+            #photo-overlay { padding: 20px 8px; }
+            .photo-nav { top: auto; bottom: 8px; transform: none; }
         }
 
         #photo-close {
@@ -550,7 +584,10 @@
 <!-- Photo viewer -->
 <div id="photo-overlay" role="dialog" aria-modal="true" aria-label="Enlarged photo">
   <button type="button" id="photo-close" aria-label="Close photo">✕</button>
+  <button type="button" class="photo-nav" id="photo-prev" aria-label="Previous photo">‹</button>
   <img id="photo-large" src="" alt="">
+  <button type="button" class="photo-nav" id="photo-next" aria-label="Next photo">›</button>
+  <div id="photo-count" aria-live="polite"></div>
 </div>
 
 <!-- FAQ Button -->
@@ -623,15 +660,27 @@
         if (e.key === 'Escape' && faqOverlay.style.display === 'flex') closeFaq();
     });
 
-    // Photo viewer: tap any photo to see it bigger; close with ✕, Escape, or a tap anywhere
+    // Photo gallery: tap any photo to see it bigger, then swipe, use the arrows,
+    // or the arrow keys to move between photos; close with ✕, Escape, or a tap
     var photoOverlay = document.getElementById('photo-overlay');
     var photoLarge = document.getElementById('photo-large');
     var photoClose = document.getElementById('photo-close');
+    var photoCount = document.getElementById('photo-count');
+    var galleryPhotos = Array.prototype.slice.call(document.querySelectorAll('.zoomable-group img'));
+    var currentIndex = 0;
     var lastPhoto = null;
-    function openPhoto(img) {
-        lastPhoto = img;
+    function showPhoto(index) {
+        currentIndex = (index + galleryPhotos.length) % galleryPhotos.length;
+        var img = galleryPhotos[currentIndex];
         photoLarge.src = img.src;
         photoLarge.alt = img.alt;
+        photoCount.textContent = (currentIndex + 1) + ' / ' + galleryPhotos.length;
+    }
+    function openPhoto(img) {
+        lastPhoto = img;
+        // The top photo also appears in Past Bakes, so open the gallery at that spot
+        var index = galleryPhotos.findIndex(function (p) { return p.src === img.src; });
+        showPhoto(index === -1 ? 0 : index);
         photoOverlay.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         photoClose.focus();
@@ -654,9 +703,39 @@
             }
         });
     });
+    document.getElementById('photo-prev').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPhoto(currentIndex - 1);
+    });
+    document.getElementById('photo-next').addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPhoto(currentIndex + 1);
+    });
     photoOverlay.addEventListener('click', closePhoto);
     document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && photoOverlay.style.display === 'flex') closePhoto();
+        if (photoOverlay.style.display !== 'flex') return;
+        if (e.key === 'Escape') closePhoto();
+        if (e.key === 'ArrowLeft') showPhoto(currentIndex - 1);
+        if (e.key === 'ArrowRight') showPhoto(currentIndex + 1);
+    });
+
+    // Swipe left or right to move between photos
+    var touchStartX = null;
+    var touchStartY = null;
+    photoOverlay.addEventListener('touchstart', function (e) {
+        if (e.touches.length !== 1) { touchStartX = null; return; }
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    photoOverlay.addEventListener('touchend', function (e) {
+        if (touchStartX === null) return;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        var dy = e.changedTouches[0].clientY - touchStartY;
+        touchStartX = null;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+            e.preventDefault(); // keep the swipe from also counting as a tap that closes
+            showPhoto(dx < 0 ? currentIndex + 1 : currentIndex - 1);
+        }
     });
 
     // Tuck the FAQ button away while scrolling down so it doesn't cover the text;
