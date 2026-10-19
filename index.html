@@ -183,6 +183,50 @@
             box-sizing: border-box;
         }
 
+        .hero-photo {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            object-position: center 40%;
+            border-radius: 12px;
+            display: block;
+            margin: 8px 0 0;
+        }
+
+        .zoomable {
+            cursor: zoom-in;
+        }
+
+        #photo-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            cursor: zoom-out;
+        }
+
+        #photo-overlay img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+            display: block;
+        }
+
+        #photo-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #fff;
+            cursor: pointer;
+        }
+
         .photo-grid img {
             width: 100%;
             aspect-ratio: 1 / 1;
@@ -330,7 +374,7 @@
             pointer-events: none;
         }
 
-        button:focus-visible, a:focus-visible {
+        button:focus-visible, a:focus-visible, img.zoomable:focus-visible {
             outline: 2px solid var(--accent-color);
             outline-offset: 3px;
         }
@@ -350,6 +394,8 @@
         
         <h1>Rising November 7<br>Bake #3</h1>
         <p class="subtitle">A baking experience for good.</p>
+
+        <img src="RiseUP_2_Group.jpeg" alt="RiseUP Bake 2 - bakers holding up their finished loaves" class="hero-photo zoomable">
 
         <div class="section">
             <h2>The RiseUP Mission</h2>
@@ -428,7 +474,7 @@
 
             <div class="past-bake-entry">
                 <div class="past-bake-label">RiseUP Bake #1</div>
-                <div class="photo-grid">
+                <div class="photo-grid zoomable-group">
                  <img src="RiseUP_1_Eric_holding_loaf.jpeg" loading="lazy" alt="RiseUP Bake 1 - Eric holding loaf">
                    <img src="RiseUP_Bake_1_group.jpeg" loading="lazy" alt="RiseUP Bake 1 - group">
                    <img src="RiseUP_Bake_1_loaves_and_group.jpeg" loading="lazy" alt="RiseUP Bake 1 - loaves and group">
@@ -441,7 +487,7 @@
 
             <div class="past-bake-entry">
                 <div class="past-bake-label">RiseUP Bake #2</div>
-                <div class="photo-grid">
+                <div class="photo-grid zoomable-group">
                  <img src="Eli_Rachael_RiseUP_2.jpeg" loading="lazy" alt="RiseUP Bake 2 - Eli and Rachael">
               <img src="RiseUP_2_Group.jpeg" loading="lazy" alt="RiseUP Bake 2 - group">
             <img src="Tom-Colleen-RiseUP-2.jpeg" loading="lazy" alt="RiseUP Bake 2 - Tom and Colleen">
@@ -501,6 +547,12 @@
 
          <img src="IMG_2951.png" alt="" class="logo-bottom">
     </div>
+<!-- Photo viewer -->
+<div id="photo-overlay" role="dialog" aria-modal="true" aria-label="Enlarged photo">
+  <button type="button" id="photo-close" aria-label="Close photo">✕</button>
+  <img id="photo-large" src="" alt="">
+</div>
+
 <!-- FAQ Button -->
 <button type="button" class="faq-button" id="faq-open" aria-haspopup="dialog" aria-controls="faq-overlay">FAQ</button>
 
@@ -569,6 +621,42 @@
     });
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && faqOverlay.style.display === 'flex') closeFaq();
+    });
+
+    // Photo viewer: tap any photo to see it bigger; close with ✕, Escape, or a tap anywhere
+    var photoOverlay = document.getElementById('photo-overlay');
+    var photoLarge = document.getElementById('photo-large');
+    var photoClose = document.getElementById('photo-close');
+    var lastPhoto = null;
+    function openPhoto(img) {
+        lastPhoto = img;
+        photoLarge.src = img.src;
+        photoLarge.alt = img.alt;
+        photoOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        photoClose.focus();
+    }
+    function closePhoto() {
+        photoOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+        if (lastPhoto) lastPhoto.focus();
+    }
+    document.querySelectorAll('img.zoomable, .zoomable-group img').forEach(function (img) {
+        img.classList.add('zoomable');
+        img.tabIndex = 0;
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-label', 'Enlarge photo: ' + img.alt);
+        img.addEventListener('click', function () { openPhoto(img); });
+        img.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openPhoto(img);
+            }
+        });
+    });
+    photoOverlay.addEventListener('click', closePhoto);
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && photoOverlay.style.display === 'flex') closePhoto();
     });
 
     // Tuck the FAQ button away while scrolling down so it doesn't cover the text;
